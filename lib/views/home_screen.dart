@@ -13,7 +13,6 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
-  String _searchQuery = '';
 
   @override
   void dispose() {
@@ -21,19 +20,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     super.dispose();
   }
 
-  // Function to handle the search submission
+
   void _onSearchSubmitted(String value) {
-    setState(() {
-      _searchQuery = value.trim().toLowerCase();
-    });
-    // Navigate to the SearchScreen and pass the search query
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => SearchScreen(searchQuery: _searchQuery),
+        builder: (context) => SearchScreen(initialQuery: value.trim()),
       ),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -94,3 +90,4 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 }
+
